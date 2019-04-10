@@ -230,7 +230,7 @@ class Hand implements \IteratorAggregate, \Countable
     $keys = array_keys($cardTypeCounts);
     $firstCount = $cardTypeCounts[$keys[0]];
 
-    return $firstCount === 2 || $firstCount === 3;
+    return in_array($firstCount, [2, 3]);
   }
 
   /**
