@@ -68,6 +68,9 @@ class Hand implements \IteratorAggregate, \Countable
    */
   protected static function isArrayConsecutive(array $values): bool
   {
+    if(count($values) < 2)
+      return true;
+
     for($i = 0; $i < count($values) - 2; ++$i) {
       if($values[$i + 1] - $values[$i] !== 1)
         return false;
@@ -95,11 +98,11 @@ class Hand implements \IteratorAggregate, \Countable
       return false;
     }
 
-    // Determine if the cards are sequential considering ace low
+    // Determine if the cards are consecutive considering ace low
     if(self::isArrayConsecutive($cardTypes))
       return true;
 
-    // Determine if the cards are sequential considering ace high
+    // Determine if the cards are consecutive considering ace high
     $cardTypes = array_map(
       function($cardType) {
         return $cardType === CardType::ACE ? CardType::ACE_HIGH : $cardType;
