@@ -156,6 +156,9 @@ class Hand implements \IteratorAggregate, \Countable
    */
   public function isPair(): bool
   {
+    if($this->isFullHouse())
+      return false;
+
     $results = array_filter(
       $this->getCardTypeCounts(),
       function($count) {

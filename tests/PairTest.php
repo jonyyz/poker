@@ -23,6 +23,19 @@ final class PairTest extends TestCase
     $this->assertTrue($hand->isPair());
   }
 
+  public function testFullHouse(): void
+  {
+    $hand = new Hand([
+      new Card(CardType::TWO, CardSuit::HEARTS),
+      new Card(CardType::TWO, CardSuit::CLUBS),
+      new Card(CardType::THREE, CardSuit::DIAMONDS),
+      new Card(CardType::THREE, CardSuit::SPADES),
+      new Card(CardType::TWO, CardSuit::SPADES)
+    ]);
+
+    $this->assertFalse($hand->isPair());
+  }
+
   public function testNotPair(): void
   {
     $hand = new Hand([
